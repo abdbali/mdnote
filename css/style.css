@@ -206,11 +206,14 @@ input, select, textarea, button { font: inherit; }
 /* clean scrollbars */
 #contentInput::-webkit-scrollbar,
 .notes-list::-webkit-scrollbar,
-.preview-content::-webkit-scrollbar { width: 8px; }
+.preview-content::-webkit-scrollbar,
+.content-mirror::-webkit-scrollbar { width: 8px; }
 #contentInput::-webkit-scrollbar-track,
 .notes-list::-webkit-scrollbar-track,
-.preview-content::-webkit-scrollbar-track { background: transparent; }
-#contentInput::-webkit-scrollbar-thumb,
+.preview-content::-webkit-scrollbar-track,
+.content-mirror::-webkit-scrollbar-track { background: transparent; }
+.preview-content::-webkit-scrollbar-thumb,
+.content-mirror::-webkit-scrollbar-thumb {
 .notes-list::-webkit-scrollbar-thumb,
 .preview-content::-webkit-scrollbar-thumb {
   background: color-mix(in oklab, var(--muted) 35%, transparent);
@@ -220,7 +223,9 @@ input, select, textarea, button { font: inherit; }
 .font-sans #contentInput { font-family: Inter, system-ui, sans-serif; }
 .font-serif #contentInput { font-family: 'Iowan Old Style', 'Palatino Linotype', ui-serif, Georgia, serif; }
 .font-mono #contentInput { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
-
+.font-sans .content-mirror { font-family: Inter, system-ui, sans-serif; }
+.font-serif .content-mirror { font-family: 'Iowan Old Style', 'Palatino Linotype', ui-serif, Georgia, serif; }
+.font-mono .content-mirror { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
 
 
 .expand-pane {
@@ -268,6 +273,7 @@ body.focus-mode .dock * { pointer-events: auto; }
   color: var(--text);
   padding: 12px;
   resize: none;
+  overflow-y: auto;
 }
 
 
