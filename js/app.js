@@ -323,7 +323,8 @@
 
   function evaluateExpansion() {
     const lineCount = (el.contentInput.value.match(/\n/g) || []).length + 1;
-    if (lineCount >= 6) openExpandPane();
+    if (lineCount >= 8) openExpandPane();
+    else closeExpandPane();
   }
 
   function openExpandPane() {

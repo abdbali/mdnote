@@ -107,9 +107,11 @@ input, select, textarea, button { font: inherit; }
 .greeting span { color: var(--accent); }
 
 .composer {
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--panel);
+  border: 0;
+  border-radius: 16px;
+  background: color-mix(in oklab, var(--panel) 78%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding: 12px;
 }
 #contentInput {
@@ -227,8 +229,10 @@ input, select, textarea, button { font: inherit; }
   right: 0;
   width: 100vw;
   height: 100vh;
-  background: var(--panel);
-  border-left: 1px solid var(--line);
+  background: color-mix(in oklab, var(--panel) 76%, transparent);
+  border-left: 0;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   transform: translateY(20px) scale(0.98);
   opacity: 0;
   pointer-events: none;
@@ -257,9 +261,9 @@ input, select, textarea, button { font: inherit; }
 .content-mirror {
   width: 100%;
   height: calc(100vh - 88px);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--panel-soft);
+  border: 0;
+  border-radius: 12px;
+  background: color-mix(in oklab, var(--panel-soft) 74%, transparent);
   color: var(--text);
   padding: 12px;
   resize: none;
@@ -286,8 +290,10 @@ body.focus-mode .dock {
   bottom: 14px;
   transform: translateX(-50%);
   z-index: 45;
-  background: color-mix(in oklab, var(--panel) 92%, transparent);
-  border: 1px solid var(--line);
+  background: color-mix(in oklab, var(--panel) 80%, transparent);
+  border: 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 12px;
   padding: 6px;
 }

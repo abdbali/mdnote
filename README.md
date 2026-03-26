@@ -26,7 +26,7 @@ No build step is required.
 | Component | Behavior |
 |---|---|
 | Bottom dock (collapsed) | Shows only symbols/icons |
-| Overflow writing mode | When line 6 starts, focus editor opens with full-screen animation while keeping dock controls at bottom center |
+| Overflow writing mode | When content reaches 8 lines, focus mode opens full-screen; if it drops below 8 lines it returns to normal mode |
 | Bottom dock (hover/focus) | Expands and shows icon + text |
 | Quick insert buttons | Click to auto-insert `H1`, list item, code block |
 | Greeting line | Time-aware greeting + rotating mood phrase |
