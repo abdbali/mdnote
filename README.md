@@ -26,7 +26,7 @@ No build step is required.
 | Component | Behavior |
 |---|---|
 | Bottom dock (collapsed) | Shows only symbols/icons |
-| Overflow writing mode | When text exceeds central area, a right-side focus panel opens automatically |
+| Overflow writing mode | When line 6 starts, focus mode opens and non-greeting UI is moved into editor view |
 | Bottom dock (hover/focus) | Expands and shows icon + text |
 | Quick insert buttons | Click to auto-insert `H1`, list item, code block |
 | Greeting line | Time-aware greeting + rotating mood phrase |

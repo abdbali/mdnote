@@ -322,16 +322,19 @@
 
 
   function evaluateExpansion() {
-    const threshold = Math.floor(window.innerHeight * 0.5);
-    if (el.contentInput.scrollHeight > threshold) openExpandPane();
+    const lineCount = (el.contentInput.value.match(/\n/g) || []).length + 1;
+    if (lineCount >= 6) openExpandPane();
   }
 
   function openExpandPane() {
     el.expandPane.classList.add('open');
+    document.body.classList.add('focus-mode');
+    syncMirrorFromMain();
   }
 
   function closeExpandPane() {
     el.expandPane.classList.remove('open');
+    document.body.classList.remove('focus-mode');
   }
 
   function syncMirrorFromMain() {
