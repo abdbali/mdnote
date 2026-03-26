@@ -1,8 +1,10 @@
 <!-- HERO -->
 
 <h1 style="font-size: 42px; font-weight: 700; letter-spacing: -1px; margin-bottom: 8px;">
-mdnote
+
 </h1>
+
+<img width="793" height="447" alt="image" src="https://github.com/user-attachments/assets/ad74528e-8a4c-4522-bfaf-9a4cdc5b0a08" />
 
 <p style="font-size: 18px; max-width: 720px; line-height: 1.6;">
 A fully offline-first Markdown notes application that runs directly in the browser. Designed for speed, resilience, and zero dependency environments.
@@ -164,5 +166,4 @@ https://github.com/abdbali/mdnote.git
 
 <br/>
 
-mdnote
 Fast. Offline. Minimal.
