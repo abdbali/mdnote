@@ -44,13 +44,16 @@
     wordCount: document.getElementById('wordCount'),
     lastEdited: document.getElementById('lastEdited'),
     versionInfo: document.getElementById('versionInfo'),
+    expandPane: document.getElementById('expandPane'),
+    contentMirror: document.getElementById('contentMirror'),
+    expandClose: document.getElementById('expandClose'),
   };
 
   const storage = new window.MDStorage();
   const editor = new window.MDEditor(el.preview);
   const ui = new window.MDUI(el);
 
-  const state = { notes: [], activeId: null, saveTimer: null, previewVisible: false };
+  const state = { notes: [], activeId: null, saveTimer: null, previewVisible: false, syncingMirror: false };
 
   document.addEventListener('DOMContentLoaded', init);
 
@@ -88,12 +91,15 @@
     el.insertListBtn.addEventListener('click', () => insertAtCursor('- '));
     el.insertCodeBtn.addEventListener('click', () => insertAtCursor('```\n\n```'));
     el.historyToggle.addEventListener('click', () => el.historyDrawer.classList.toggle('open'));
+    el.expandClose.addEventListener('click', closeExpandPane);
 
     ['input', 'change'].forEach((evt) => {
       el.titleInput.addEventListener(evt, queueSave);
       el.tagsInput.addEventListener(evt, queueSave);
       el.contentInput.addEventListener(evt, queueSave);
     });
+
+    el.contentMirror.addEventListener('input', onMirrorInput);
 
     el.notesList.addEventListener('click', (e) => {
       const item = e.target.closest('.note-item');
@@ -147,6 +153,8 @@
     el.previewPane.classList.toggle('hidden', !state.previewVisible);
     const previewLabel = el.previewToggle.querySelector('em');
     if (previewLabel) previewLabel.textContent = state.previewVisible ? 'Önizleme Gizle' : 'Önizleme';
+    syncMirrorFromMain();
+    evaluateExpansion();
   }
 
   function getActive() {
@@ -309,6 +317,35 @@
     ta.focus();
     const nextPos = start + snippet.length;
     ta.setSelectionRange(nextPos, nextPos);
+    queueSave();
+  }
+
+
+  function evaluateExpansion() {
+    const threshold = Math.floor(window.innerHeight * 0.5);
+    if (el.contentInput.scrollHeight > threshold) openExpandPane();
+  }
+
+  function openExpandPane() {
+    el.expandPane.classList.add('open');
+  }
+
+  function closeExpandPane() {
+    el.expandPane.classList.remove('open');
+  }
+
+  function syncMirrorFromMain() {
+    if (state.syncingMirror) return;
+    state.syncingMirror = true;
+    el.contentMirror.value = el.contentInput.value;
+    state.syncingMirror = false;
+  }
+
+  function onMirrorInput() {
+    if (state.syncingMirror) return;
+    state.syncingMirror = true;
+    el.contentInput.value = el.contentMirror.value;
+    state.syncingMirror = false;
     queueSave();
   }
 
