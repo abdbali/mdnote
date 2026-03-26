@@ -169,6 +169,7 @@
       versions: getActive() && getActive().versions ? getActive().versions.length : 0,
     });
 
+    syncMirrorFromMain();
     editor.render(el.contentInput.value);
 
     clearTimeout(state.saveTimer);
@@ -317,6 +318,7 @@
     ta.focus();
     const nextPos = start + snippet.length;
     ta.setSelectionRange(nextPos, nextPos);
+    syncMirrorFromMain();
     queueSave();
   }
 

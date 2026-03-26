@@ -292,13 +292,18 @@ body.focus-mode .dock {
   top: 14px;
   bottom: auto;
   transform: translateX(-50%);
-  z-index: 55;
+  width: max-content;
+  max-width: calc(100vw - 24px);
+  flex-wrap: nowrap;
+  justify-content: center;
+  z-index: 70;
   background: color-mix(in oklab, var(--panel) 40%, transparent);
   border: 0;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 12px;
   padding: 6px;
+  pointer-events: auto;
 }
 body.focus-mode .expand-pane {
   z-index: 30;
