@@ -4,7 +4,6 @@
 
 </h1>
 
-<img width="793" height="447" alt="image" src="https://github.com/user-attachments/assets/ad74528e-8a4c-4522-bfaf-9a4cdc5b0a08" />
 
 <p style="font-size: 18px; max-width: 720px; line-height: 1.6;">
 A fully offline-first Markdown notes application that runs directly in the browser. Designed for speed, resilience, and zero dependency environments.
@@ -37,6 +36,7 @@ border-radius: 18px;
 background: linear-gradient(135deg, rgba(255,179,193,0.10), rgba(209,213,219,0.08));
 border: 1px solid rgba(0,0,0,0.06);
 ">
+<img width="715" height="135" alt="image" src="https://github.com/user-attachments/assets/0a13161e-20d1-4f29-b875-1532bfcf955f" />
 
 <p style="font-size: 16px; line-height: 1.8;">
 mdnote delivers a distraction-free writing environment with a fully offline-first architecture. It leverages native browser storage systems to ensure your notes remain available, persistent, and safe across sessions — even without connectivity.
