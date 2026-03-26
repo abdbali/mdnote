@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="tr" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="mdnote - Offline Markdown Notes" />
+    <title>mdnote</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <button id="historyToggle" class="history-toggle" aria-label="Geçmiş">☰</button>
+
+    <aside id="historyDrawer" class="history-drawer">
+      <div class="drawer-head"><strong>mdnote</strong></div>
+      <input id="searchInput" type="search" placeholder="Ara..." />
+      <select id="sortSelect" aria-label="Sort notes">
+        <option value="updated_desc">Son düzenlenen</option>
+        <option value="updated_asc">İlk düzenlenen</option>
+        <option value="title_asc">Başlık A-Z</option>
+        <option value="title_desc">Başlık Z-A</option>
+      </select>
+      <button id="newNoteBtn" class="drawer-new" type="button">+ Yeni</button>
+      <div id="notesList" class="notes-list"></div>
+    </aside>
+
+    <main class="stage">
+      <p class="plan-pill">mdnote · offline</p>
+      <h1 id="greetingText" class="greeting"><span>*</span> Good afternoon, Keep Going</h1>
+
+      <section class="composer">
+        <textarea id="contentInput" placeholder="How can I help you today?"></textarea>
+
+        <div class="dock">
+          <button id="plusBtn" class="icon-btn"><span>＋</span><em>Yeni Not</em></button>
+          <button id="insertHeadingBtn" class="icon-btn"><span>H</span><em>Başlık Ekle</em></button>
+          <button id="insertListBtn" class="icon-btn"><span>•</span><em>Liste Ekle</em></button>
+          <button id="insertCodeBtn" class="icon-btn"><span>{</span><em>Kod Bloğu</em></button>
+
+          <label class="icon-field"><span>T</span><input id="titleInput" maxlength="120" placeholder="Başlık" /></label>
+          <label class="icon-field"><span>#</span><input id="tagsInput" maxlength="120" placeholder="etiket" /></label>
+
+          <button id="previewToggle" class="icon-btn"><span>◫</span><em>Önizleme</em></button>
+          <button id="themeToggle" class="icon-btn"><span>◐</span><em>Tema</em></button>
+          <button id="importBtn" class="icon-btn"><span>↓</span><em>İçe Aktar</em></button>
+          <button id="exportBtn" class="icon-btn"><span>↓</span><em>Dışa Aktar</em></button>
+          <button id="deleteBtn" class="icon-btn danger"><span>✕</span><em>Sil</em></button>
+
+          <select id="fontSelect" class="icon-select" title="Font">
+            <option value="font-sans">Sans</option>
+            <option value="font-serif">Serif</option>
+            <option value="font-mono">Mono</option>
+          </select>
+          <input id="importInput" type="file" accept=".md,text/markdown" hidden />
+        </div>
+
+        <div id="previewPane" class="preview hidden"><div id="preview" class="preview-content"></div></div>
+      </section>
+
+      <footer class="status">
+        <span id="autosaveStatus">Hazır</span>
+        <span id="wordCount">0 kelime</span>
+        <span id="lastEdited">Henüz düzenlenmedi</span>
+        <span id="versionInfo">Sürüm: 0</span>
+      </footer>
+    </main>
+
+
+
+    <aside id="expandPane" class="expand-pane">
+      <div class="expand-head">
+        <strong></strong>
+        <button id="expandClose" class="expand-close" type="button">✕</button>
+      </div>
+      <textarea id="contentMirror" class="content-mirror" placeholder="Continue writing..."></textarea>
+    </aside>
+
+    <script src="js/vendor/marked.min.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/editor.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
