@@ -1,118 +1,168 @@
-# mdnote
+<!-- HERO -->
 
-`mdnote` is a fully offline-first Markdown notes app that runs directly in the browser.
-No build step is required.
+<h1 style="font-size: 42px; font-weight: 700; letter-spacing: -1px; margin-bottom: 8px;">
+mdnote
+</h1>
 
----
+<p style="font-size: 18px; max-width: 720px; line-height: 1.6;">
+A fully offline-first Markdown notes application that runs directly in the browser. Designed for speed, resilience, and zero dependency environments.
+</p>
+
+<p style="margin-top: 12px;">
+<img src="https://img.shields.io/badge/status-stable-black?style=flat" />
+<img src="https://img.shields.io/badge/offline-first-critical" />
+<img src="https://img.shields.io/badge/no-build-required-informational" />
+<img src="https://img.shields.io/badge/license-MIT-lightgrey" />
+</p>
+
+<br/>
+
+<div style="
+height: 6px;
+width: 180px;
+border-radius: 999px;
+background: linear-gradient(90deg, #ffb3c1, #d1d5db);
+"></div>
+
+<br/>
+
+<!-- HERO PANEL -->
+
+<div style="
+max-width: 860px;
+padding: 32px;
+border-radius: 18px;
+background: linear-gradient(135deg, rgba(255,179,193,0.10), rgba(209,213,219,0.08));
+border: 1px solid rgba(0,0,0,0.06);
+">
+
+<p style="font-size: 16px; line-height: 1.8;">
+mdnote delivers a distraction-free writing environment with a fully offline-first architecture. It leverages native browser storage systems to ensure your notes remain available, persistent, and safe across sessions — even without connectivity.
+</p>
+
+<p style="font-size: 16px; line-height: 1.8;">
+No installation. No build process. No external services. Just open and start writing.
+</p>
+
+</div>
+
+<br/>
+
+<!-- VALUE PROPS -->
+
+## Why mdnote
+
+<table>
+<tr><td><b>Offline-first by design</b></td><td>Your data stays accessible without internet</td></tr>
+<tr><td><b>Zero setup workflow</b></td><td>No installation or build tools required</td></tr>
+<tr><td><b>Fast execution</b></td><td>Instant load and minimal runtime overhead</td></tr>
+<tr><td><b>Resilient storage</b></td><td>IndexedDB with automatic fallback</td></tr>
+<tr><td><b>Minimal interface</b></td><td>Focused writing experience without clutter</td></tr>
+<tr><td><b>Portable</b></td><td>Works across all major operating systems</td></tr>
+</table>
+
+<br/>
+
+<!-- FEATURES -->
 
 ## Features
 
-| Area | Details |
-|---|---|
-| Notes | Create, edit, delete notes |
-| Storage | IndexedDB primary + localStorage fallback |
-| Autosave | Debounced autosave (300ms) |
-| Versioning | Keeps last 5 versions per note |
-| Markdown | Live render with bundled parser |
-| Import/Export | `.md` import and export |
-| UI | Minimal icon dock, expandable controls on hover |
-| Navigation | Compact left history drawer |
-| Personalization | Theme toggle + 3 editor fonts |
+<table>
+<tr><td><b>Notes</b></td><td>Create, edit, delete notes</td></tr>
+<tr><td><b>Autosave</b></td><td>Debounced autosave (300ms)</td></tr>
+<tr><td><b>Versioning</b></td><td>Last 5 snapshots per note</td></tr>
+<tr><td><b>Markdown</b></td><td>Live rendering engine</td></tr>
+<tr><td><b>Import / Export</b></td><td>Full .md compatibility</td></tr>
+<tr><td><b>Storage</b></td><td>IndexedDB + localStorage fallback</td></tr>
+<tr><td><b>UI System</b></td><td>Dock-based interaction model</td></tr>
+<tr><td><b>Navigation</b></td><td>Compact history drawer</td></tr>
+<tr><td><b>Personalization</b></td><td>Theme and font selection</td></tr>
+</table>
 
----
+<br/>
 
-## UI Behavior
+<!-- DEMO / QUICK START -->
 
-| Component | Behavior |
-|---|---|
-| Bottom dock (collapsed) | Shows only symbols/icons |
-| Bottom dock (hover/focus) | Expands and shows icon + text |
-| Quick insert buttons | Click to auto-insert `H1`, list item, code block |
-| Greeting line | Time-aware greeting + rotating mood phrase |
-| New note placeholder | Randomly picked from 5 English prompt alternatives |
-| History cards | Show note title + first content line + first tag |
+## Quick Start
 
----
+```bash id="qs1"
+# direct usage
+open index.html
+```
 
-## Project Structure
+```bash id="qs2"
+# local server options
+python3 -m http.server 8080
+npx serve . -l 8080
+php -S 0.0.0.0:8080
+```
 
-| Path | Purpose |
-|---|---|
-| `index.html` | App shell |
-| `css/style.css` | Theme, layout, interactions |
-| `js/app.js` | Main state/events/app flow |
-| `js/storage.js` | IndexedDB/localStorage layer |
-| `js/editor.js` | Markdown render + helpers |
-| `js/ui.js` | UI rendering and hydration |
-| `js/vendor/marked.min.js` | Bundled lightweight markdown parser |
-| `Dockerfile` | Containerized runtime |
-| `docker-compose.yml` | Local container orchestration |
+<br/>
 
----
+## Docker
 
-## Run Options
+```bash id="dk1"
+docker build -t mdnote:latest .
+docker run --rm -p 8080:8080 mdnote
+```
 
-### 1) Direct (No server)
+<br/>
 
-| Command | Notes |
-|---|---|
-| Open `index.html` | Fastest option for personal local usage |
+<!-- ARCHITECTURE -->
 
-### 2) Terminal (Local HTTP)
+## Architecture
 
-| Tool | Command | URL |
-|---|---|---|
-| Python 3 | `python3 -m http.server 8080` | `http://localhost:8080` |
-| Node (serve) | `npx serve . -l 8080` | `http://localhost:8080` |
-| PHP | `php -S 0.0.0.0:8080` | `http://localhost:8080` |
+<table>
+<tr><td><b>index.html</b></td><td>Application entry point</td></tr>
+<tr><td><b>css/style.css</b></td><td>Layout and theming system</td></tr>
+<tr><td><b>js/app.js</b></td><td>Core application flow</td></tr>
+<tr><td><b>js/storage.js</b></td><td>Persistence layer</td></tr>
+<tr><td><b>js/editor.js</b></td><td>Markdown engine</td></tr>
+<tr><td><b>js/ui.js</b></td><td>UI rendering logic</td></tr>
+</table>
 
----
+<br/>
 
-## Docker Setup
+<!-- SYSTEM -->
 
-### Build & Run (Docker)
+## Platform Support
 
-| Step | Command |
-|---|---|
-| Build image | `docker build -t mdnote:latest .` |
-| Run container | `docker run --rm -p 8080:8080 --name mdnote mdnote:latest` |
-| Open app | `http://localhost:8080` |
+macOS
+Windows
+Linux
+Ubuntu Server
+Modern Browsers
 
-### Docker Compose
+<br/>
 
-| Step | Command |
-|---|---|
-| Start | `docker compose up -d --build` |
-| Logs | `docker compose logs -f` |
-| Stop | `docker compose down` |
+<!-- PHILOSOPHY -->
 
----
+## Philosophy
 
-## Keyboard Shortcuts
+mdnote is built on a simple idea: software should remain usable regardless of infrastructure.
 
-| Shortcut | Action |
-|---|---|
-| `Ctrl/Cmd + S` | Force save |
-| `Ctrl/Cmd + N` | New note |
+It avoids unnecessary complexity and external dependencies, focusing instead on durability, clarity, and long-term usability.
 
----
+<br/>
 
-## Data Model
+<div style="
+height: 4px;
+width: 120px;
+border-radius: 999px;
+background: linear-gradient(90deg, #ffb3c1, #d1d5db);
+"></div>
 
-| Field | Description |
-|---|---|
-| `id` | Note UUID |
-| `title` | Note title |
-| `content` | Markdown content |
-| `tags` | String array of tags |
-| `created_at` | Timestamp |
-| `updated_at` | Timestamp |
-| `versions` | Last 5 snapshots |
+<br/>
 
----
+## License
 
-## Offline Notes
+MIT License
 
-- Works without internet after files are local.
-- Uses IndexedDB when available.
-- Falls back to localStorage automatically.
+<br/>
+
+https://github.com/abdbali/mdnote.git
+
+<br/>
+
+mdnote
+Fast. Offline. Minimal.
