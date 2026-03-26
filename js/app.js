@@ -31,6 +31,8 @@
     tagsInput: document.getElementById('tagsInput'),
     preview: document.getElementById('preview'),
     previewPane: document.getElementById('previewPane'),
+    composer: document.getElementById('composer'),
+    dockBar: document.getElementById('dockBar'),
     previewToggle: document.getElementById('previewToggle'),
     plusBtn: document.getElementById('plusBtn'),
     insertHeadingBtn: document.getElementById('insertHeadingBtn'),
@@ -330,12 +332,18 @@
   }
 
   function openExpandPane() {
+    if (el.dockBar.parentElement !== el.expandPane) {
+      el.expandPane.insertBefore(el.dockBar, el.contentMirror);
+    }
     el.expandPane.classList.add('open');
     document.body.classList.add('focus-mode');
     syncMirrorFromMain();
   }
 
   function closeExpandPane() {
+    if (el.dockBar.parentElement !== el.composer) {
+      el.composer.insertBefore(el.dockBar, el.previewPane);
+    }
     el.expandPane.classList.remove('open');
     document.body.classList.remove('focus-mode');
   }
