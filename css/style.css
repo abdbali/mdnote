@@ -212,10 +212,10 @@ input, select, textarea, button { font: inherit; }
 .notes-list::-webkit-scrollbar-track,
 .preview-content::-webkit-scrollbar-track,
 .content-mirror::-webkit-scrollbar-track { background: transparent; }
+#contentInput::-webkit-scrollbar-thumb,
+.notes-list::-webkit-scrollbar-thumb,
 .preview-content::-webkit-scrollbar-thumb,
 .content-mirror::-webkit-scrollbar-thumb {
-.notes-list::-webkit-scrollbar-thumb,
-.preview-content::-webkit-scrollbar-thumb {
   background: color-mix(in oklab, var(--muted) 35%, transparent);
   border-radius: 8px;
 }
@@ -226,6 +226,7 @@ input, select, textarea, button { font: inherit; }
 .font-sans .content-mirror { font-family: Inter, system-ui, sans-serif; }
 .font-serif .content-mirror { font-family: 'Iowan Old Style', 'Palatino Linotype', ui-serif, Georgia, serif; }
 .font-mono .content-mirror { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
 
 
 .expand-pane {
@@ -245,6 +246,7 @@ input, select, textarea, button { font: inherit; }
   z-index: 28;
   display: grid;
   grid-template-rows: auto 1fr;
+  overflow: hidden;
   padding: 10px 10px 84px;
   gap: 10px;
 }
@@ -278,6 +280,10 @@ body.focus-mode .dock * { pointer-events: auto; }
 
 
 
+
+body.focus-mode {
+  overflow: hidden;
+}
 body.focus-mode .history-toggle,
 body.focus-mode .history-drawer,
 body.focus-mode .plan-pill,
