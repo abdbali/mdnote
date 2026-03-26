@@ -109,7 +109,7 @@ input, select, textarea, button { font: inherit; }
 .composer {
   border: 0;
   border-radius: 16px;
-  background: color-mix(in oklab, var(--panel) 55%, transparent);
+  background: color-mix(in oklab, var(--panel) 40%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 12px;
@@ -229,7 +229,7 @@ input, select, textarea, button { font: inherit; }
   right: 0;
   width: 100vw;
   height: 100vh;
-  background: color-mix(in oklab, var(--panel) 52%, transparent);
+  background: color-mix(in oklab, var(--panel) 37%, transparent);
   border-left: 0;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -264,7 +264,7 @@ body.focus-mode .dock * { pointer-events: auto; }
   height: calc(100vh - 88px);
   border: 0;
   border-radius: 12px;
-  background: color-mix(in oklab, var(--panel-soft) 50%, transparent);
+  background: color-mix(in oklab, var(--panel-soft) 35%, transparent);
   color: var(--text);
   padding: 12px;
   resize: none;
@@ -289,10 +289,11 @@ body.focus-mode .dock {
   display: flex !important;
   position: fixed;
   left: 50%;
-  bottom: 14px;
+  top: 14px;
+  bottom: auto;
   transform: translateX(-50%);
   z-index: 55;
-  background: color-mix(in oklab, var(--panel) 55%, transparent);
+  background: color-mix(in oklab, var(--panel) 40%, transparent);
   border: 0;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -300,7 +301,7 @@ body.focus-mode .dock {
   padding: 6px;
 }
 body.focus-mode .expand-pane {
-  z-index: 40;
+  z-index: 30;
 }
 
 @media (max-width: 820px) {
