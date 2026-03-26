@@ -1,20 +1,21 @@
 # Markdown Notes (Ultra Minimal)
 
-Tamamen sade, merkez odaklı ve offline çalışan Markdown not uygulaması.
+Merkezde tek odaklı, offline çalışan, ikon tabanlı minimal Markdown not uygulaması.
 
-## Yeni Tasarım
+## Tasarım Notları
 
-- Sol kenarda küçük ikonla açılan "geçmiş notlar" çekmecesi
-- Ortada tek odak: karşılama + chat benzeri not alanı
-- Altta ikon tabanlı mini menüler
-- Alt menüler hover ile genişler (başlık/tag/aksiyon)
-- Önizleme isteğe bağlı açılır
+- Sol üstte küçük ikon ile açılan geçmiş notlar çekmecesi
+- Altta en küçük halinde sadece ikonlar görünür
+- İkon üstüne gelince genişler ve etiket metni görünür
+- H1 / Liste / Kod ikonlarına tıklayınca içerik otomatik eklenir
+- Kaydırma çubukları sade ve modern hale getirildi
+- Geçmiş kartlarında içerikten sadece ilk satır ve ilk etiket gösterilir
 
 ## Özellikler
 
 - Not oluştur / seç / düzenle / sil
 - IndexedDB + localStorage fallback
-- 300ms autosave, son 5 sürüm
+- 300ms autosave + son 5 sürüm
 - Arama / sıralama
 - Tema, font seçimi
 - `.md` içe aktar / dışa aktar

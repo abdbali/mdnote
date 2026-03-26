@@ -1,6 +1,7 @@
 :root {
   --bg: #1f201f;
   --panel: #2d2e31;
+  --panel-soft: #26272a;
   --line: rgba(255, 255, 255, 0.1);
   --text: #e9e0d0;
   --muted: #a69e92;
@@ -9,6 +10,7 @@
 html[data-theme='light'] {
   --bg: #eceae5;
   --panel: #fbfaf8;
+  --panel-soft: #f2f0ea;
   --line: rgba(12, 12, 12, 0.1);
   --text: #292621;
   --muted: #726b61;
@@ -35,14 +37,13 @@ body {
   width: 38px;
   height: 38px;
 }
-
 .history-drawer {
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 280px;
-  background: color-mix(in oklab, var(--panel) 94%, transparent);
+  width: 286px;
+  background: var(--panel);
   border-right: 1px solid var(--line);
   padding: 60px 12px 12px;
   transform: translateX(-100%);
@@ -59,19 +60,18 @@ input, select, textarea, button { font: inherit; }
 .history-drawer select,
 .drawer-new {
   border: 1px solid var(--line);
-  background: var(--bg);
+  background: var(--panel-soft);
   color: var(--text);
   border-radius: 10px;
   padding: 8px 10px;
 }
-.drawer-new { cursor: pointer; }
 .notes-list { overflow: auto; min-height: 0; padding-right: 2px; }
 .note-item {
   border: 1px solid var(--line);
   border-radius: 10px;
-  padding: 8px;
+  padding: 9px;
   margin-bottom: 7px;
-  background: var(--bg);
+  background: var(--panel-soft);
   cursor: pointer;
 }
 .note-item.active { border-color: var(--accent); }
@@ -90,7 +90,7 @@ input, select, textarea, button { font: inherit; }
 .plan-pill {
   margin: 0 auto;
   border: 1px solid var(--line);
-  background: #111;
+  background: #151515;
   color: var(--muted);
   border-radius: 10px;
   padding: 6px 12px;
@@ -119,11 +119,10 @@ input, select, textarea, button { font: inherit; }
   background: transparent;
   color: var(--text);
   resize: vertical;
-  font-size: 1.2rem;
+  font-size: 1.18rem;
   line-height: 1.55;
   outline: none;
 }
-
 .dock {
   margin-top: 8px;
   display: flex;
@@ -133,15 +132,15 @@ input, select, textarea, button { font: inherit; }
 }
 .icon-btn,
 .icon-select,
-.expand-field {
+.icon-field {
   border: 1px solid var(--line);
-  background: color-mix(in oklab, var(--panel) 86%, #1a1a1a);
+  background: color-mix(in oklab, var(--panel) 88%, #1a1a1a);
   color: var(--text);
   border-radius: 11px;
   height: 38px;
 }
 .icon-btn {
-  width: 40px;
+  width: 42px;
   overflow: hidden;
   display: inline-flex;
   align-items: center;
@@ -149,41 +148,32 @@ input, select, textarea, button { font: inherit; }
   gap: 8px;
   cursor: pointer;
   transition: width 0.18s ease;
+  padding: 0 12px;
 }
-.icon-btn em {
-  font-style: normal;
-  white-space: nowrap;
-  opacity: 0;
-}
-.icon-btn:hover { width: 120px; }
+.icon-btn em { font-style: normal; white-space: nowrap; opacity: 0; }
+.icon-btn:hover { width: 130px; }
 .icon-btn:hover em { opacity: 1; }
 
-.expand-field {
+.icon-field {
   display: inline-flex;
   align-items: center;
   width: 42px;
-  transition: width 0.18s ease;
   overflow: hidden;
+  transition: width 0.18s ease;
 }
-.expand-field span { width: 42px; text-align: center; color: var(--muted); }
-.expand-field input {
+.icon-field span { width: 42px; text-align: center; color: var(--muted); }
+.icon-field input {
   border: 0;
   background: transparent;
   color: var(--text);
-  width: 130px;
+  width: 126px;
   outline: none;
 }
-.expand-field:hover,
-.expand-field:focus-within { width: 180px; }
+.icon-field:hover,
+.icon-field:focus-within { width: 170px; }
 
-.icon-select {
-  width: 70px;
-  padding: 0 8px;
-}
-.mini-meta {
-  color: var(--muted);
-  font-size: 0.78rem;
-}
+.icon-select { width: 78px; padding: 0 8px; }
+.mini-meta { color: var(--muted); font-size: 0.78rem; }
 .danger { border-color: color-mix(in oklab, #ce6f6f 60%, var(--line)); }
 
 .preview {
@@ -202,6 +192,20 @@ input, select, textarea, button { font: inherit; }
   justify-content: center;
   flex-wrap: wrap;
   font-size: 0.82rem;
+}
+
+/* clean scrollbars */
+#contentInput::-webkit-scrollbar,
+.notes-list::-webkit-scrollbar,
+.preview-content::-webkit-scrollbar { width: 8px; }
+#contentInput::-webkit-scrollbar-track,
+.notes-list::-webkit-scrollbar-track,
+.preview-content::-webkit-scrollbar-track { background: transparent; }
+#contentInput::-webkit-scrollbar-thumb,
+.notes-list::-webkit-scrollbar-thumb,
+.preview-content::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--muted) 35%, transparent);
+  border-radius: 8px;
 }
 
 .font-sans #contentInput { font-family: Inter, system-ui, sans-serif; }

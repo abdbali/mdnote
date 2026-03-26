@@ -12,11 +12,12 @@
     this.el.notesList.innerHTML = notes
       .map((note) => {
         const active = note.id === activeId ? 'active' : '';
-        const tags = (note.tags || []).slice(0, 3).map((t) => `#${escapeHtml(t)}`).join(' · ');
+        const firstTag = (note.tags || [])[0];
+        const tags = firstTag ? `#${escapeHtml(firstTag)}` : 'etiket yok';
         return `
           <div class="note-item ${active}" data-id="${note.id}">
             <div class="note-title">${escapeHtml(note.title || 'Untitled')}</div>
-            <div class="note-snippet">${escapeHtml(snippetFn(note.content || ''))}</div>
+            <div class="note-snippet">${escapeHtml(firstLine(snippetFn(note.content || '')))}</div>
             <div class="note-meta">${tags || 'etiket yok'}</div>
           </div>
         `;
@@ -36,6 +37,11 @@
     this.el.lastEdited.textContent = edited;
     this.el.versionInfo.textContent = `Sürüm: ${versions}`;
   };
+
+
+  function firstLine(str) {
+    return String(str).split(/\r?\n/)[0].trim();
+  }
 
   function escapeHtml(str) {
     return String(str)

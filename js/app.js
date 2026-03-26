@@ -20,6 +20,9 @@
     previewPane: document.getElementById('previewPane'),
     previewToggle: document.getElementById('previewToggle'),
     plusBtn: document.getElementById('plusBtn'),
+    insertHeadingBtn: document.getElementById('insertHeadingBtn'),
+    insertListBtn: document.getElementById('insertListBtn'),
+    insertCodeBtn: document.getElementById('insertCodeBtn'),
     createdInfo: document.getElementById('createdInfo'),
     searchInput: document.getElementById('searchInput'),
     sortSelect: document.getElementById('sortSelect'),
@@ -68,6 +71,9 @@
     el.fontSelect.addEventListener('change', onFontChange);
     el.previewToggle.addEventListener('click', togglePreview);
     el.plusBtn.addEventListener('click', () => createNote());
+    el.insertHeadingBtn.addEventListener('click', () => insertAtCursor('# '));
+    el.insertListBtn.addEventListener('click', () => insertAtCursor('- '));
+    el.insertCodeBtn.addEventListener('click', () => insertAtCursor('```\n\n```'));
     el.historyToggle.addEventListener('click', () => el.historyDrawer.classList.toggle('open'));
 
     ['input', 'change'].forEach((evt) => {
@@ -270,6 +276,19 @@
   function applyGreeting() {
     const phrase = MOTIVATION[Math.floor(Math.random() * MOTIVATION.length)];
     el.greetingText.innerHTML = `<span>*</span> Good afternoon, ${phrase}`;
+  }
+
+
+  function insertAtCursor(snippet) {
+    const ta = el.contentInput;
+    const start = ta.selectionStart || 0;
+    const end = ta.selectionEnd || 0;
+    const value = ta.value;
+    ta.value = `${value.slice(0, start)}${snippet}${value.slice(end)}`;
+    ta.focus();
+    const nextPos = start + snippet.length;
+    ta.setSelectionRange(nextPos, nextPos);
+    queueSave();
   }
 
   function slugify(str) {
