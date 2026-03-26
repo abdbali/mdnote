@@ -10,12 +10,12 @@
   <body>
     <div class="app">
       <aside class="sidebar panel">
-        <div class="brand-row">
-          <span class="spark">✶</span>
-          <div>
-            <p class="brand-kicker">Markdown Notes</p>
-            <h1 id="greetingText" class="brand-title">Hey there, Keep Going</h1>
+        <div class="hero-center">
+          <div class="hero-top">
+            <span class="star">*</span>
+            <p>MARKDOWN NOTES</p>
           </div>
+          <h1 id="greetingText" class="brand-title">Hey there,<br />Keep Going</h1>
         </div>
 
         <div class="sidebar-tools">
@@ -26,47 +26,49 @@
             <option value="title_asc">Başlık A-Z</option>
             <option value="title_desc">Başlık Z-A</option>
           </select>
+          <button id="newNoteBtn" class="btn btn-primary" type="button">+ Yeni Not</button>
         </div>
 
-        <button id="newNoteBtn" class="btn btn-primary" type="button">+ Yeni Not</button>
         <div id="notesList" class="notes-list"></div>
       </aside>
 
       <main class="main panel">
-        <header class="editor-head">
-          <input id="titleInput" class="title-input" placeholder="Not başlığı" maxlength="120" />
-          <input id="tagsInput" class="tags-input" placeholder="etiketler: iş, fikir" maxlength="120" />
+        <section class="editor-card">
+          <label>Not Alanı</label>
+          <textarea id="contentInput" placeholder="# Bugün ne yazmak istersin?"></textarea>
+        </section>
 
-          <select id="fontSelect" class="font-select" title="Yazı tipi">
+        <section id="previewPane" class="preview-wrap hidden">
+          <label>Önizleme</label>
+          <div id="preview" class="preview"></div>
+        </section>
+
+        <footer class="composer-bar">
+          <button id="plusBtn" class="plus-btn" type="button" aria-label="actions">+</button>
+
+          <input id="titleInput" class="dock-input" placeholder="Başlık" maxlength="120" />
+          <input id="tagsInput" class="dock-input" placeholder="tag: iş, fikir" maxlength="120" />
+          <span id="createdInfo" class="meta-pill">Tarih: -</span>
+
+          <select id="fontSelect" class="dock-control" title="Yazı tipi">
             <option value="font-sans">Inter / System</option>
             <option value="font-serif">Serif Premium</option>
             <option value="font-mono">Mono Focus</option>
           </select>
-
-          <button id="themeToggle" class="btn" type="button">Tema</button>
-          <button id="importBtn" class="btn" type="button">İçe Aktar</button>
-          <button id="exportBtn" class="btn" type="button">Dışa Aktar</button>
-          <button id="deleteBtn" class="btn btn-danger" type="button">Sil</button>
+          <button id="previewToggle" class="dock-control" type="button">Önizleme</button>
+          <button id="themeToggle" class="dock-control" type="button">Tema</button>
+          <button id="importBtn" class="dock-control" type="button">İçe Aktar</button>
+          <button id="exportBtn" class="dock-control" type="button">Dışa Aktar</button>
+          <button id="deleteBtn" class="dock-control danger" type="button">Sil</button>
           <input id="importInput" type="file" accept=".md,text/markdown" hidden />
-        </header>
+        </footer>
 
-        <section class="split">
-          <div class="editor-wrap">
-            <label>Markdown</label>
-            <textarea id="contentInput" placeholder="# Yazmaya başla..."></textarea>
-          </div>
-          <article class="preview-wrap">
-            <label>Önizleme</label>
-            <div id="preview" class="preview"></div>
-          </article>
-        </section>
-
-        <footer class="status">
+        <div class="status">
           <span id="autosaveStatus">Hazır</span>
           <span id="wordCount">0 kelime</span>
           <span id="lastEdited">Henüz düzenlenmedi</span>
           <span id="versionInfo">Sürüm: 0</span>
-        </footer>
+        </div>
       </main>
     </div>
 

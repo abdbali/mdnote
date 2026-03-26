@@ -15,6 +15,10 @@
     contentInput: document.getElementById('contentInput'),
     tagsInput: document.getElementById('tagsInput'),
     preview: document.getElementById('preview'),
+    previewPane: document.getElementById('previewPane'),
+    previewToggle: document.getElementById('previewToggle'),
+    plusBtn: document.getElementById('plusBtn'),
+    createdInfo: document.getElementById('createdInfo'),
     searchInput: document.getElementById('searchInput'),
     sortSelect: document.getElementById('sortSelect'),
     themeToggle: document.getElementById('themeToggle'),
@@ -29,11 +33,7 @@
   const editor = new window.MDEditor(el.preview);
   const ui = new window.MDUI(el);
 
-  const state = {
-    notes: [],
-    activeId: null,
-    saveTimer: null,
-  };
+  const state = { notes: [], activeId: null, saveTimer: null, previewVisible: false };
 
   document.addEventListener('DOMContentLoaded', init);
 
@@ -46,7 +46,7 @@
     state.notes = await storage.getAllNotes();
 
     if (!state.notes.length) {
-      await createNote({ title: 'Yeni Not', content: '# Hoş geldin\n\nNotların otomatik kaydolur.' });
+      await createNote({ title: 'Yeni Not', content: '# Hoş geldin\n\nBuraya direkt chat gibi yazabilirsin.' });
     }
 
     state.activeId = state.notes[0].id;
@@ -64,6 +64,8 @@
     el.sortSelect.addEventListener('change', refresh);
     el.themeToggle.addEventListener('click', toggleTheme);
     el.fontSelect.addEventListener('change', onFontChange);
+    el.previewToggle.addEventListener('click', togglePreview);
+    el.plusBtn.addEventListener('click', () => el.contentInput.focus());
 
     ['input', 'change'].forEach((evt) => {
       el.titleInput.addEventListener(evt, queueSave);
@@ -83,7 +85,7 @@
       const key = e.key.toLowerCase();
       if (key === 's') {
         e.preventDefault();
-        persist().then(() => setSavedStatus());
+        persist().then(setSavedStatus);
       }
       if (key === 'n') {
         e.preventDefault();
@@ -111,12 +113,17 @@
     const active = getActive();
     ui.hydrate(active);
     editor.render(active ? active.content : '');
+
     ui.status({
       save: 'Hazır',
       words: editor.wordCount(active ? active.content : ''),
       edited: active ? `Son düzenleme: ${new Date(active.updated_at).toLocaleString('tr-TR')}` : 'Henüz düzenlenmedi',
       versions: active && active.versions ? active.versions.length : 0,
     });
+
+    el.createdInfo.textContent = active ? `Tarih: ${new Date(active.created_at).toLocaleDateString('tr-TR')}` : 'Tarih: -';
+    el.previewPane.classList.toggle('hidden', !state.previewVisible);
+    el.previewToggle.textContent = state.previewVisible ? 'Önizleme Gizle' : 'Önizleme';
   }
 
   function getActive() {
@@ -135,7 +142,7 @@
 
     clearTimeout(state.saveTimer);
     state.saveTimer = setTimeout(() => {
-      persist().then(() => setSavedStatus());
+      persist().then(setSavedStatus);
     }, 300);
   }
 
@@ -146,21 +153,16 @@
     const title = el.titleInput.value.trim() || 'Untitled';
     const content = el.contentInput.value;
     const tags = el.tagsInput.value.split(',').map((t) => t.trim()).filter(Boolean).slice(0, 12);
-
     const hasChanged = note.title !== title || note.content !== content || JSON.stringify(note.tags) !== JSON.stringify(tags);
 
     if (hasChanged && note.content) {
-      note.versions = [
-        { title: note.title, content: note.content, tags: note.tags, updated_at: note.updated_at },
-        ...(note.versions || []),
-      ].slice(0, 5);
+      note.versions = [{ title: note.title, content: note.content, tags: note.tags, updated_at: note.updated_at }, ...(note.versions || [])].slice(0, 5);
     }
 
     note.title = title;
     note.content = content;
     note.tags = tags;
     note.updated_at = Date.now();
-
     await storage.upsertNote(note);
   }
 
@@ -233,6 +235,11 @@
     });
   }
 
+  function togglePreview() {
+    state.previewVisible = !state.previewVisible;
+    refresh();
+  }
+
   function toggleTheme() {
     const html = document.documentElement;
     const next = html.dataset.theme === 'dark' ? 'light' : 'dark';
@@ -258,7 +265,7 @@
 
   function applyGreeting() {
     const phrase = MOTIVATION[Math.floor(Math.random() * MOTIVATION.length)];
-    el.greetingText.textContent = `Hey there, ${phrase}`;
+    el.greetingText.innerHTML = `Hey there,<br>${phrase}`;
   }
 
   function slugify(str) {
