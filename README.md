@@ -65,6 +65,9 @@ Features
 <tr><td><b>Personalization</b></td><td>Theme and font selection</td></tr>
 </table>
 <br/>
+
+<img width="807" height="309" alt="image" src="https://github.com/user-attachments/assets/05e3b80d-eff5-4916-ba4c-c010ca30d2c7" />
+
 <!-- DEMO / QUICK START -->
 Quick Start
 ```bash id="qs1"
