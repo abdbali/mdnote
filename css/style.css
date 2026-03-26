@@ -166,9 +166,13 @@ input, select, textarea, button { font: inherit; }
   border: 0;
   background: transparent;
   color: var(--text);
-  width: 126px;
+  width: 0;
+  opacity: 0;
   outline: none;
+  transition: width 0.18s ease, opacity 0.12s ease;
 }
+.icon-field:hover input,
+.icon-field:focus-within input { width: 126px; opacity: 1; }
 .icon-field:hover,
 .icon-field:focus-within { width: 170px; }
 

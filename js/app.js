@@ -1,5 +1,18 @@
 (function () {
-  const MOTIVATION = ['Keep Going', 'Small Wins', 'Stay Sharp', 'Deep Focus', 'Calm Progress', 'Own Today'];
+  const MOODS = ['Calm Progress', 'Steady Energy', 'Focused Flow', 'Quiet Confidence', 'One Step Ahead'];
+  const GREETINGS = {
+    morning: ['Good morning', 'Morning', 'Hi there', 'Hello', 'Hey'],
+    afternoon: ['Good afternoon', 'Hi there', 'Hello', 'Hey', 'Hi'],
+    evening: ['Good evening', 'Evening', 'Hi there', 'Hello', 'Hey'],
+    night: ['Good night', 'Late hello', 'Hi there', 'Hello', 'Hey'],
+  };
+  const PROMPTS = [
+    'How are you feeling today?',
+    'What is on your mind today?',
+    'What would make today great?',
+    'What do you want to capture right now?',
+    'What are you grateful for today?',
+  ];
   const THEME_KEY = 'mdnotes-theme';
   const FONT_KEY = 'mdnotes-editor-font';
 
@@ -46,6 +59,7 @@
     applyGreeting();
     applyTheme();
     applyEditorFont();
+    applyRandomPrompt();
 
     await storage.init();
     state.notes = await storage.getAllNotes();
@@ -133,7 +147,8 @@
 
     el.createdInfo.textContent = active ? `Tarih: ${new Date(active.created_at).toLocaleDateString('tr-TR')}` : 'Tarih: -';
     el.previewPane.classList.toggle('hidden', !state.previewVisible);
-    el.previewToggle.textContent = state.previewVisible ? 'Önizleme Gizle' : 'Önizleme';
+    const previewLabel = el.previewToggle.querySelector('em');
+    if (previewLabel) previewLabel.textContent = state.previewVisible ? 'Önizleme Gizle' : 'Önizleme';
   }
 
   function getActive() {
@@ -191,6 +206,7 @@
     state.notes.unshift(note);
     state.activeId = note.id;
     await storage.upsertNote(note);
+    applyRandomPrompt();
     refresh();
   }
 
@@ -274,10 +290,17 @@
   }
 
   function applyGreeting() {
-    const phrase = MOTIVATION[Math.floor(Math.random() * MOTIVATION.length)];
-    el.greetingText.innerHTML = `<span>*</span> Good afternoon, ${phrase}`;
+    const hour = new Date().getHours();
+    const bucket = hour >= 5 && hour < 12 ? 'morning' : hour >= 12 && hour < 18 ? 'afternoon' : hour >= 18 && hour < 23 ? 'evening' : 'night';
+    const greetPool = GREETINGS[bucket];
+    const greet = greetPool[Math.floor(Math.random() * greetPool.length)];
+    const mood = MOODS[Math.floor(Math.random() * MOODS.length)];
+    el.greetingText.innerHTML = `<span>*</span> ${greet}, ${mood}`;
   }
 
+  function applyRandomPrompt() {
+    el.contentInput.placeholder = PROMPTS[Math.floor(Math.random() * PROMPTS.length)];
+  }
 
   function insertAtCursor(snippet) {
     const ta = el.contentInput;
