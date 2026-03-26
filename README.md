@@ -48,6 +48,9 @@ Why mdnote
 <tr><td><b>Portable</b></td><td>Works across all major operating systems</td></tr>
 </table>
 <br/>
+
+<img width="757" height="413" alt="image" src="https://github.com/user-attachments/assets/53804ea2-0ba7-433e-bfee-329f504d0a2d" />
+
 <!-- FEATURES -->
 Features
 <table>
