@@ -109,7 +109,7 @@ input, select, textarea, button { font: inherit; }
 .composer {
   border: 0;
   border-radius: 16px;
-  background: color-mix(in oklab, var(--panel) 78%, transparent);
+  background: color-mix(in oklab, var(--panel) 55%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 12px;
@@ -229,7 +229,7 @@ input, select, textarea, button { font: inherit; }
   right: 0;
   width: 100vw;
   height: 100vh;
-  background: color-mix(in oklab, var(--panel) 76%, transparent);
+  background: color-mix(in oklab, var(--panel) 52%, transparent);
   border-left: 0;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -240,10 +240,11 @@ input, select, textarea, button { font: inherit; }
   z-index: 28;
   display: grid;
   grid-template-rows: auto 1fr;
-  padding: 10px;
+  padding: 10px 10px 84px;
   gap: 10px;
 }
 .expand-pane.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
+body.focus-mode .dock * { pointer-events: auto; }
 .expand-head {
   display: flex;
   justify-content: space-between;
@@ -263,7 +264,7 @@ input, select, textarea, button { font: inherit; }
   height: calc(100vh - 88px);
   border: 0;
   border-radius: 12px;
-  background: color-mix(in oklab, var(--panel-soft) 74%, transparent);
+  background: color-mix(in oklab, var(--panel-soft) 50%, transparent);
   color: var(--text);
   padding: 12px;
   resize: none;
@@ -285,12 +286,13 @@ body.focus-mode .composer {
   padding: 0;
 }
 body.focus-mode .dock {
+  display: flex !important;
   position: fixed;
   left: 50%;
   bottom: 14px;
   transform: translateX(-50%);
-  z-index: 45;
-  background: color-mix(in oklab, var(--panel) 80%, transparent);
+  z-index: 55;
+  background: color-mix(in oklab, var(--panel) 55%, transparent);
   border: 0;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
