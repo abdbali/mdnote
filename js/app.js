@@ -36,7 +36,6 @@
     insertHeadingBtn: document.getElementById('insertHeadingBtn'),
     insertListBtn: document.getElementById('insertListBtn'),
     insertCodeBtn: document.getElementById('insertCodeBtn'),
-    createdInfo: document.getElementById('createdInfo'),
     searchInput: document.getElementById('searchInput'),
     sortSelect: document.getElementById('sortSelect'),
     themeToggle: document.getElementById('themeToggle'),
@@ -145,7 +144,6 @@
       versions: active && active.versions ? active.versions.length : 0,
     });
 
-    el.createdInfo.textContent = active ? `Tarih: ${new Date(active.created_at).toLocaleDateString('tr-TR')}` : 'Tarih: -';
     el.previewPane.classList.toggle('hidden', !state.previewVisible);
     const previewLabel = el.previewToggle.querySelector('em');
     if (previewLabel) previewLabel.textContent = state.previewVisible ? 'Önizleme Gizle' : 'Önizleme';

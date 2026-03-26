@@ -35,23 +35,23 @@ body {
   color: var(--text);
   border-radius: 10px;
   width: 38px;
-  height: 38px;
+  height: 34px;
 }
 .history-drawer {
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 286px;
+  width: 232px;
   background: var(--panel);
   border-right: 1px solid var(--line);
-  padding: 60px 12px 12px;
+  padding: 56px 10px 10px;
   transform: translateX(-100%);
   transition: transform 0.2s ease;
   z-index: 25;
   display: grid;
   grid-template-rows: auto auto auto auto 1fr;
-  gap: 8px;
+  gap: 6px;
 }
 .history-drawer.open { transform: translateX(0); }
 .drawer-head { color: var(--muted); font-size: 0.85rem; }
@@ -69,14 +69,14 @@ input, select, textarea, button { font: inherit; }
 .note-item {
   border: 1px solid var(--line);
   border-radius: 10px;
-  padding: 9px;
+  padding: 7px 8px;
   margin-bottom: 7px;
   background: var(--panel-soft);
   cursor: pointer;
 }
 .note-item.active { border-color: var(--accent); }
 .note-title { font-weight: 600; }
-.note-snippet, .note-meta { color: var(--muted); font-size: 0.8rem; margin-top: 3px; }
+.note-snippet, .note-meta { color: var(--muted); font-size: 0.76rem; margin-top: 3px; }
 
 .stage {
   max-width: 760px;
@@ -126,7 +126,7 @@ input, select, textarea, button { font: inherit; }
 .dock {
   margin-top: 8px;
   display: flex;
-  gap: 8px;
+  gap: 6px;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -137,31 +137,31 @@ input, select, textarea, button { font: inherit; }
   background: color-mix(in oklab, var(--panel) 88%, #1a1a1a);
   color: var(--text);
   border-radius: 11px;
-  height: 38px;
+  height: 34px;
 }
 .icon-btn {
-  width: 42px;
+  width: 34px;
   overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   cursor: pointer;
   transition: width 0.18s ease;
-  padding: 0 12px;
+  padding: 0 9px;
 }
-.icon-btn em { font-style: normal; white-space: nowrap; opacity: 0; }
-.icon-btn:hover { width: 130px; }
-.icon-btn:hover em { opacity: 1; }
+.icon-btn em { font-style: normal; white-space: nowrap; opacity: 0; max-width: 0; overflow: hidden; }
+.icon-btn:hover { width: 118px; }
+.icon-btn:hover em { opacity: 1; max-width: 90px; }
 
 .icon-field {
   display: inline-flex;
   align-items: center;
-  width: 42px;
+  width: 34px;
   overflow: hidden;
   transition: width 0.18s ease;
 }
-.icon-field span { width: 42px; text-align: center; color: var(--muted); }
+.icon-field span { width: 34px; text-align: center; color: var(--muted); }
 .icon-field input {
   border: 0;
   background: transparent;
@@ -174,7 +174,7 @@ input, select, textarea, button { font: inherit; }
 .icon-field:hover input,
 .icon-field:focus-within input { width: 126px; opacity: 1; }
 .icon-field:hover,
-.icon-field:focus-within { width: 170px; }
+.icon-field:focus-within { width: 156px; }
 
 .icon-select { width: 78px; padding: 0 8px; }
 .mini-meta { color: var(--muted); font-size: 0.78rem; }
