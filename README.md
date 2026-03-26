@@ -36,7 +36,10 @@ border-radius: 18px;
 background: linear-gradient(135deg, rgba(255,179,193,0.10), rgba(209,213,219,0.08));
 border: 1px solid rgba(0,0,0,0.06);
 ">
-<img width="715" height="135" alt="image" src="https://github.com/user-attachments/assets/0a13161e-20d1-4f29-b875-1532bfcf955f" />
+
+<img width="432" height="76" alt="image" src="https://github.com/user-attachments/assets/26d8a6ec-564b-44e6-9dbb-063a77da30fc" />
+
+
 
 <p style="font-size: 16px; line-height: 1.8;">
 mdnote delivers a distraction-free writing environment with a fully offline-first architecture. It leverages native browser storage systems to ensure your notes remain available, persistent, and safe across sessions — even without connectivity.
