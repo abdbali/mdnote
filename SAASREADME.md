@@ -1,27 +1,63 @@
 <div align="center">
 
-<h1>mdnote</h1>
+<!-- LOGO -->
 
-<p>
+<img src="https://raw.githubusercontent.com/abdbali/mdnote/main/assets/logo.png" width="120" alt="mdnote logo"/>
+
+<br/>
+<br/>
+
+<h1 style="font-weight: 600; letter-spacing: -0.5px;">
+mdnote
+</h1>
+
+<p style="max-width: 640px; font-size: 16px;">
 A fully offline-first Markdown notes application that runs directly in the browser.
 </p>
 
-<p>
+<p style="max-width: 640px; font-size: 14px; opacity: 0.7;">
 No build step. No dependencies. No network requirement.
 </p>
 
 <br/>
 
-<hr style="width: 60%;"/>
+<!-- BADGES -->
+
+<p>
+<img src="https://img.shields.io/badge/status-stable-black?style=flat&logo=github" />
+<img src="https://img.shields.io/badge/offline-first-important" />
+<img src="https://img.shields.io/badge/no-build-required-informational" />
+<img src="https://img.shields.io/badge/license-MIT-lightgrey" />
+</p>
 
 <br/>
 
-<h3>Overview</h3>
+<!-- GRADIENT LINE -->
 
-<p style="max-width: 720px;">
-mdnote is designed for speed, reliability, and simplicity. It provides a focused writing experience while ensuring data accessibility in offline and low-resource environments.
+<div style="width: 120px; height: 4px; border-radius: 999px; background: linear-gradient(90deg, #ffb3c1, #d1d5db);"></div>
+
+<br/>
+<br/>
+
+<!-- HERO PANEL -->
+
+<div style="
+max-width: 820px;
+padding: 28px;
+border-radius: 16px;
+background: linear-gradient(145deg, rgba(255,179,193,0.08), rgba(209,213,219,0.08));
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+border: 1px solid rgba(255,255,255,0.08);
+">
+
+<p style="font-size: 15px; line-height: 1.7;">
+mdnote is designed for speed, reliability, and simplicity. It delivers a focused writing experience while ensuring your data remains accessible in offline and low-resource environments.
 </p>
 
+</div>
+
+<br/>
 <br/>
 
 <h3>Core Principles</h3>
@@ -29,10 +65,10 @@ mdnote is designed for speed, reliability, and simplicity. It provides a focused
 <table>
 <tr><td><b>Offline-first</b></td><td>Works without internet after initial load</td></tr>
 <tr><td><b>Zero setup</b></td><td>Runs directly via a single HTML file</td></tr>
-<tr><td><b>Lightweight</b></td><td>No frameworks or heavy dependencies</td></tr>
+<tr><td><b>Lightweight</b></td><td>No frameworks or dependencies</td></tr>
 <tr><td><b>Resilient</b></td><td>Storage fallback prevents data loss</td></tr>
 <tr><td><b>Fast</b></td><td>Instant load and minimal latency</td></tr>
-<tr><td><b>Maintainable</b></td><td>Clean and modular structure</td></tr>
+<tr><td><b>Maintainable</b></td><td>Modular and clean architecture</td></tr>
 </table>
 
 <br/>
@@ -44,37 +80,20 @@ mdnote is designed for speed, reliability, and simplicity. It provides a focused
 <tr><td><b>Storage</b></td><td>IndexedDB with localStorage fallback</td></tr>
 <tr><td><b>Autosave</b></td><td>Debounced autosave (300ms)</td></tr>
 <tr><td><b>Versioning</b></td><td>Stores last 5 versions</td></tr>
-<tr><td><b>Markdown</b></td><td>Live rendering with embedded parser</td></tr>
-<tr><td><b>Import / Export</b></td><td>Full .md support</td></tr>
-<tr><td><b>UI</b></td><td>Minimal dock-based interaction</td></tr>
-<tr><td><b>Navigation</b></td><td>Compact history drawer</td></tr>
-<tr><td><b>Personalization</b></td><td>Theme and font options</td></tr>
+<tr><td><b>Markdown</b></td><td>Live rendering</td></tr>
+<tr><td><b>Import / Export</b></td><td>.md support</td></tr>
+<tr><td><b>UI</b></td><td>Dock-based minimal interface</td></tr>
+<tr><td><b>Navigation</b></td><td>Compact history system</td></tr>
+<tr><td><b>Personalization</b></td><td>Theme and fonts</td></tr>
 </table>
 
 <br/>
 
-<h3>Architecture</h3>
-
-<table>
-<tr><td><b>index.html</b></td><td>Application shell</td></tr>
-<tr><td><b>css/style.css</b></td><td>Layout and theming</td></tr>
-<tr><td><b>js/app.js</b></td><td>Core application logic</td></tr>
-<tr><td><b>js/storage.js</b></td><td>Persistence layer</td></tr>
-<tr><td><b>js/editor.js</b></td><td>Markdown processing</td></tr>
-<tr><td><b>js/ui.js</b></td><td>UI rendering</td></tr>
-</table>
-
-<br/>
-
-<h3>Execution</h3>
-
-<p><b>Direct</b></p>
+<h3>Quick Start</h3>
 
 <pre>
 Open index.html
 </pre>
-
-<p><b>Local Server</b></p>
 
 <pre>
 python3 -m http.server 8080
@@ -102,37 +121,28 @@ docker run --rm -p 8080:8080 mdnote
 
 <br/>
 
-<h3>Data Model</h3>
+<h3>Architecture</h3>
 
 <table>
-<tr><td>id</td><td>Unique identifier</td></tr>
-<tr><td>title</td><td>Note title</td></tr>
-<tr><td>content</td><td>Markdown content</td></tr>
-<tr><td>tags</td><td>Tag array</td></tr>
-<tr><td>created_at</td><td>Timestamp</td></tr>
-<tr><td>updated_at</td><td>Timestamp</td></tr>
-<tr><td>versions</td><td>Last five snapshots</td></tr>
+<tr><td>index.html</td><td>Application shell</td></tr>
+<tr><td>css/style.css</td><td>Layout and theming</td></tr>
+<tr><td>js/app.js</td><td>Core logic</td></tr>
+<tr><td>js/storage.js</td><td>Persistence layer</td></tr>
+<tr><td>js/editor.js</td><td>Markdown processing</td></tr>
+<tr><td>js/ui.js</td><td>UI rendering</td></tr>
 </table>
-
-<br/>
-
-<h3>Platform Support</h3>
-
-<p>
-macOS · Windows · Linux · Ubuntu Server · Modern Browsers
-</p>
 
 <br/>
 
 <h3>Philosophy</h3>
 
 <p style="max-width: 720px;">
-mdnote prioritizes independence, simplicity, and longevity. It is built to remain usable regardless of connectivity or infrastructure.
+mdnote prioritizes independence, simplicity, and longevity. It is built to remain usable regardless of connectivity or infrastructure constraints.
 </p>
 
 <br/>
 
-<hr style="width: 60%;"/>
+<div style="width: 80px; height: 3px; border-radius: 999px; background: linear-gradient(90deg, #ffb3c1, #d1d5db);"></div>
 
 <br/>
 
@@ -146,9 +156,8 @@ https://github.com/abdbali/mdnote.git
 
 <br/>
 
-<p>
-mdnote<br/>
-Fast. Offline. Minimal.
+<p style="opacity:0.7;">
+mdnote — Fast. Offline. Minimal.
 </p>
 
 </div>
