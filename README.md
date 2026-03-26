@@ -1,79 +1,39 @@
-# Markdown Notes (Offline-First)
+# Markdown Notes (Offline + Minimal Premium)
 
-A production-ready Markdown Notes app built with **HTML + CSS + Bootstrap + Vanilla JS**, designed to run entirely in-browser with no build tools.
+Tarayıcıda tamamen offline çalışan, sade ve premium görünümlü Markdown not uygulaması.
 
-## Features
+## Öne Çıkanlar
 
-- Create, edit, delete notes
-- IndexedDB persistence with localStorage fallback
-- Split view: Markdown editor + live preview
-- Debounced autosave (300ms)
-- Last 5 versions stored per note
-- Real-time search across title/content/tags
-- Sorting options (updated/title)
-- Import `.md` and export note as `.md`
-- Theme toggle (dark/light) with persisted preference
-- Keyboard shortcuts:
-  - `Ctrl/Cmd + S` → save immediately
-  - `Ctrl/Cmd + N` → create note
-- Word count + autosave + last edited indicators
-- Responsive, modern glassmorphism UI
+- Not oluştur / düzenle / sil
+- IndexedDB + localStorage fallback
+- 300ms autosave
+- Her not için son 5 sürüm saklama
+- Canlı Markdown önizleme
+- Başlık/içerik/etiket araması
+- Güncelleme veya başlığa göre sıralama
+- `.md` içe aktar / dışa aktar
+- Koyu/Açık tema
+- Not editörü için 3 font seçeneği:
+  - Inter/System
+  - Serif Premium
+  - Mono Focus
+- Her açılışta değişen 2-3 kelimelik motive edici karşılama
+- Klavye kısa yolları:
+  - `Ctrl/Cmd + S`: hemen kaydet
+  - `Ctrl/Cmd + N`: yeni not
 
-## Project Structure
+## Çalıştırma
 
-```text
-/project
- ├── index.html
- ├── css/
- │    └── style.css
- ├── js/
- │    ├── app.js
- │    ├── storage.js
- │    ├── editor.js
- │    ├── ui.js
- │    └── vendor/
- │         └── marked.min.js
- ├── assets/
- └── README.md
-```
+1. Projeyi indir.
+2. `index.html` dosyasını çift tıklayarak aç.
+3. Uygulamayı doğrudan kullan.
 
-## Run Locally
+## Dosya Yapısı
 
-1. Download or clone this folder.
-2. Open `index.html` directly in your browser.
-3. Start taking notes.
-
-> No installation, no build step, and no server required.
-
-## Data Model
-
-Each note stores:
-
-- `id`
-- `title`
-- `content`
-- `tags` (array)
-- `created_at`
-- `updated_at`
-- `versions` (up to 5 snapshots)
-
-## Offline Details
-
-- Primary persistence: IndexedDB (`mdnotes-db` / `notes` store)
-- Fallback persistence: localStorage (`mdnotes-local-fallback`)
-- Markdown parser is bundled at `js/vendor/marked.min.js`
-
-## UX/Design Notes
-
-- Claude-inspired typography (`Inter`, with system fallback)
-- Dark-first palette with pastel pink accent (`#f4c2c2`) and soft grays
-- Rounded corners, subtle shadows, smooth transitions
-
-## Browser Compatibility
-
-Works on modern Chromium, Firefox, and Safari versions supporting:
-
-- ES Modules
-- IndexedDB
-- `crypto.randomUUID`
-
+- `index.html`: Uygulama iskeleti
+- `css/style.css`: Minimal premium tema + responsive düzen
+- `js/storage.js`: Kalıcılık katmanı
+- `js/editor.js`: Markdown render / word count
+- `js/ui.js`: UI render yardımcıları
+- `js/app.js`: Uygulama akışı ve event yönetimi
+- `js/vendor/marked.min.js`: Offline markdown parser

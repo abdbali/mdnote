@@ -1,44 +1,43 @@
-const DB_NAME = 'mdnotes-db';
-const DB_VERSION = 1;
-const STORE_NAME = 'notes';
+(function (global) {
+  const DB_NAME = 'mdnotes-db';
+  const DB_VERSION = 1;
+  const STORE_NAME = 'notes';
 
-const fallback = {
-  key: 'mdnotes-local-fallback',
-  read() {
-    return JSON.parse(localStorage.getItem(this.key) || '[]');
-  },
-  write(notes) {
-    localStorage.setItem(this.key, JSON.stringify(notes));
-  },
-};
+  const fallback = {
+    key: 'mdnotes-local-fallback',
+    read() {
+      return JSON.parse(localStorage.getItem(this.key) || '[]');
+    },
+    write(notes) {
+      localStorage.setItem(this.key, JSON.stringify(notes));
+    },
+  };
 
-export class StorageService {
-  constructor() {
+  function StorageService() {
     this.db = null;
     this.hasIndexedDB = 'indexedDB' in window;
   }
 
-  async init() {
+  StorageService.prototype.init = async function init() {
     if (!this.hasIndexedDB) return;
     try {
-      this.db = await this.#openDb();
+      this.db = await openDb();
     } catch {
       this.db = null;
     }
-  }
+  };
 
-  async getAllNotes() {
+  StorageService.prototype.getAllNotes = async function getAllNotes() {
     if (!this.db) return fallback.read();
     return new Promise((resolve, reject) => {
       const tx = this.db.transaction(STORE_NAME, 'readonly');
-      const store = tx.objectStore(STORE_NAME);
-      const request = store.getAll();
+      const request = tx.objectStore(STORE_NAME).getAll();
       request.onsuccess = () => resolve(request.result || []);
       request.onerror = () => reject(request.error);
     });
-  }
+  };
 
-  async upsertNote(note) {
+  StorageService.prototype.upsertNote = async function upsertNote(note) {
     if (!this.db) {
       const notes = fallback.read();
       const idx = notes.findIndex((n) => n.id === note.id);
@@ -47,19 +46,17 @@ export class StorageService {
       fallback.write(notes);
       return;
     }
-
     return new Promise((resolve, reject) => {
       const tx = this.db.transaction(STORE_NAME, 'readwrite');
       tx.objectStore(STORE_NAME).put(note);
       tx.oncomplete = () => resolve();
       tx.onerror = () => reject(tx.error);
     });
-  }
+  };
 
-  async deleteNote(id) {
+  StorageService.prototype.deleteNote = async function deleteNote(id) {
     if (!this.db) {
-      const notes = fallback.read().filter((n) => n.id !== id);
-      fallback.write(notes);
+      fallback.write(fallback.read().filter((n) => n.id !== id));
       return;
     }
     return new Promise((resolve, reject) => {
@@ -68,13 +65,13 @@ export class StorageService {
       tx.oncomplete = () => resolve();
       tx.onerror = () => reject(tx.error);
     });
-  }
+  };
 
-  #openDb() {
+  function openDb() {
     return new Promise((resolve, reject) => {
       const request = indexedDB.open(DB_NAME, DB_VERSION);
-      request.onupgradeneeded = (event) => {
-        const db = event.target.result;
+      request.onupgradeneeded = (e) => {
+        const db = e.target.result;
         if (!db.objectStoreNames.contains(STORE_NAME)) {
           db.createObjectStore(STORE_NAME, { keyPath: 'id' });
         }
@@ -83,4 +80,6 @@ export class StorageService {
       request.onerror = () => reject(request.error);
     });
   }
-}
+
+  global.MDStorage = StorageService;
+})(window);
