@@ -5,6 +5,8 @@
 
   const el = {
     greetingText: document.getElementById('greetingText'),
+    historyToggle: document.getElementById('historyToggle'),
+    historyDrawer: document.getElementById('historyDrawer'),
     notesList: document.getElementById('notesList'),
     newNoteBtn: document.getElementById('newNoteBtn'),
     deleteBtn: document.getElementById('deleteBtn'),
@@ -65,7 +67,8 @@
     el.themeToggle.addEventListener('click', toggleTheme);
     el.fontSelect.addEventListener('change', onFontChange);
     el.previewToggle.addEventListener('click', togglePreview);
-    el.plusBtn.addEventListener('click', () => el.contentInput.focus());
+    el.plusBtn.addEventListener('click', () => createNote());
+    el.historyToggle.addEventListener('click', () => el.historyDrawer.classList.toggle('open'));
 
     ['input', 'change'].forEach((evt) => {
       el.titleInput.addEventListener(evt, queueSave);
@@ -77,6 +80,7 @@
       const item = e.target.closest('.note-item');
       if (!item) return;
       state.activeId = item.dataset.id;
+      el.historyDrawer.classList.remove('open');
       refresh();
     });
 
@@ -265,7 +269,7 @@
 
   function applyGreeting() {
     const phrase = MOTIVATION[Math.floor(Math.random() * MOTIVATION.length)];
-    el.greetingText.innerHTML = `Hey there,<br>${phrase}`;
+    el.greetingText.innerHTML = `<span>*</span> Good afternoon, ${phrase}`;
   }
 
   function slugify(str) {

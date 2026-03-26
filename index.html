@@ -8,69 +8,71 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div class="app">
-      <aside class="sidebar panel">
-        <div class="hero-center">
-          <div class="hero-top">
-            <span class="star">*</span>
-            <p>MARKDOWN NOTES</p>
-          </div>
-          <h1 id="greetingText" class="brand-title">Hey there,<br />Keep Going</h1>
-        </div>
+    <button id="historyToggle" class="history-toggle" aria-label="Geçmiş">☰</button>
 
-        <div class="sidebar-tools">
-          <input id="searchInput" type="search" placeholder="Notlarda ara..." />
-          <select id="sortSelect" aria-label="Sort notes">
-            <option value="updated_desc">Son düzenlenen</option>
-            <option value="updated_asc">İlk düzenlenen</option>
-            <option value="title_asc">Başlık A-Z</option>
-            <option value="title_desc">Başlık Z-A</option>
+    <aside id="historyDrawer" class="history-drawer">
+      <div class="drawer-head">
+        <strong>Geçmiş Notlar</strong>
+      </div>
+      <input id="searchInput" type="search" placeholder="Ara..." />
+      <select id="sortSelect" aria-label="Sort notes">
+        <option value="updated_desc">Son düzenlenen</option>
+        <option value="updated_asc">İlk düzenlenen</option>
+        <option value="title_asc">Başlık A-Z</option>
+        <option value="title_desc">Başlık Z-A</option>
+      </select>
+      <button id="newNoteBtn" class="drawer-new" type="button">+ Yeni</button>
+      <div id="notesList" class="notes-list"></div>
+    </aside>
+
+    <main class="stage">
+      <p class="plan-pill">Offline plan · Premium</p>
+      <h1 id="greetingText" class="greeting"><span>*</span> Good afternoon, Keep Going</h1>
+
+      <section class="composer">
+        <textarea id="contentInput" placeholder="How can I help you today?"></textarea>
+
+        <div class="dock">
+          <button id="plusBtn" class="icon-btn" title="Yeni not"><span>+</span><em>Yeni</em></button>
+
+          <label class="expand-field" title="Başlık">
+            <span>⌁</span>
+            <input id="titleInput" maxlength="120" placeholder="Başlık" />
+          </label>
+
+          <label class="expand-field" title="Etiket">
+            <span>#</span>
+            <input id="tagsInput" maxlength="120" placeholder="Etiket" />
+          </label>
+
+          <button id="previewToggle" class="icon-btn" title="Önizleme"><span>◫</span><em>Önizleme</em></button>
+          <button id="themeToggle" class="icon-btn" title="Tema"><span>◐</span><em>Tema</em></button>
+          <button id="importBtn" class="icon-btn" title="İçe aktar"><span>⇩</span><em>İçe Aktar</em></button>
+          <button id="exportBtn" class="icon-btn" title="Dışa aktar"><span>⇧</span><em>Dışa Aktar</em></button>
+          <button id="deleteBtn" class="icon-btn danger" title="Sil"><span>✕</span><em>Sil</em></button>
+
+          <select id="fontSelect" class="icon-select" title="Font">
+            <option value="font-sans">Sans</option>
+            <option value="font-serif">Serif</option>
+            <option value="font-mono">Mono</option>
           </select>
-          <button id="newNoteBtn" class="btn btn-primary" type="button">+ Yeni Not</button>
-        </div>
 
-        <div id="notesList" class="notes-list"></div>
-      </aside>
-
-      <main class="main panel">
-        <section class="editor-card">
-          <label>Not Alanı</label>
-          <textarea id="contentInput" placeholder="# Bugün ne yazmak istersin?"></textarea>
-        </section>
-
-        <section id="previewPane" class="preview-wrap hidden">
-          <label>Önizleme</label>
-          <div id="preview" class="preview"></div>
-        </section>
-
-        <footer class="composer-bar">
-          <button id="plusBtn" class="plus-btn" type="button" aria-label="actions">+</button>
-
-          <input id="titleInput" class="dock-input" placeholder="Başlık" maxlength="120" />
-          <input id="tagsInput" class="dock-input" placeholder="tag: iş, fikir" maxlength="120" />
-          <span id="createdInfo" class="meta-pill">Tarih: -</span>
-
-          <select id="fontSelect" class="dock-control" title="Yazı tipi">
-            <option value="font-sans">Inter / System</option>
-            <option value="font-serif">Serif Premium</option>
-            <option value="font-mono">Mono Focus</option>
-          </select>
-          <button id="previewToggle" class="dock-control" type="button">Önizleme</button>
-          <button id="themeToggle" class="dock-control" type="button">Tema</button>
-          <button id="importBtn" class="dock-control" type="button">İçe Aktar</button>
-          <button id="exportBtn" class="dock-control" type="button">Dışa Aktar</button>
-          <button id="deleteBtn" class="dock-control danger" type="button">Sil</button>
+          <span id="createdInfo" class="mini-meta">Tarih: -</span>
           <input id="importInput" type="file" accept=".md,text/markdown" hidden />
-        </footer>
-
-        <div class="status">
-          <span id="autosaveStatus">Hazır</span>
-          <span id="wordCount">0 kelime</span>
-          <span id="lastEdited">Henüz düzenlenmedi</span>
-          <span id="versionInfo">Sürüm: 0</span>
         </div>
-      </main>
-    </div>
+
+        <div id="previewPane" class="preview hidden">
+          <div id="preview" class="preview-content"></div>
+        </div>
+      </section>
+
+      <footer class="status">
+        <span id="autosaveStatus">Hazır</span>
+        <span id="wordCount">0 kelime</span>
+        <span id="lastEdited">Henüz düzenlenmedi</span>
+        <span id="versionInfo">Sürüm: 0</span>
+      </footer>
+    </main>
 
     <script src="js/vendor/marked.min.js"></script>
     <script src="js/storage.js"></script>

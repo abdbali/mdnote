@@ -1,21 +1,24 @@
-# Markdown Notes (Minimal Premium)
+# Markdown Notes (Ultra Minimal)
 
-Offline çalışan, chat-benzeri not alma deneyimi sunan sade/premium Markdown not uygulaması.
+Tamamen sade, merkez odaklı ve offline çalışan Markdown not uygulaması.
+
+## Yeni Tasarım
+
+- Sol kenarda küçük ikonla açılan "geçmiş notlar" çekmecesi
+- Ortada tek odak: karşılama + chat benzeri not alanı
+- Altta ikon tabanlı mini menüler
+- Alt menüler hover ile genişler (başlık/tag/aksiyon)
+- Önizleme isteğe bağlı açılır
 
 ## Özellikler
 
-- Solda merkeze alınmış hero alanı: `Hey there, ...`
-- Her açılışta değişen kısa motive edici ifade
-- Notları direkt editor alanına yazarak hızlı kullanım
-- Alt "composer" satırı: `+`, başlık, tag, tarih ve aksiyon butonları
-- Önizleme isteğe bağlı (toggle)
-- 300ms autosave + son 5 sürüm
+- Not oluştur / seç / düzenle / sil
 - IndexedDB + localStorage fallback
-- Arama / sıralama / import / export / silme
-- Tema + 3 font seçeneği
+- 300ms autosave, son 5 sürüm
+- Arama / sıralama
+- Tema, font seçimi
+- `.md` içe aktar / dışa aktar
 
 ## Çalıştırma
 
-1. Projeyi indir.
-2. `index.html` dosyasını aç.
-3. Uygulamayı doğrudan kullan.
+`index.html` dosyasını doğrudan aç.
