@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Offline Markdown Notes App" />
+    <title>Markdown Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app-shell container-fluid p-3 p-md-4">
+      <header class="toolbar glass card-shadow mb-3 p-2 p-md-3 d-flex align-items-center gap-2 flex-wrap">
+        <h1 class="app-title mb-0 me-auto">Markdown Notes</h1>
+
+        <div class="input-group toolbar-search">
+          <span class="input-group-text">🔎</span>
+          <input id="searchInput" type="search" class="form-control" placeholder="Search notes..." />
+        </div>
+
+        <select id="sortSelect" class="form-select toolbar-select" aria-label="Sort notes">
+          <option value="updated_desc">Recently updated</option>
+          <option value="updated_asc">Oldest updated</option>
+          <option value="title_asc">Title A-Z</option>
+          <option value="title_desc">Title Z-A</option>
+        </select>
+
+        <button id="themeToggle" class="btn btn-soft" type="button" title="Toggle theme">🌙</button>
+        <button id="importBtn" class="btn btn-soft" type="button">Import .md</button>
+        <button id="newNoteBtn" class="btn btn-primary-soft" type="button">+ New note</button>
+        <input id="importInput" type="file" accept=".md,text/markdown" hidden />
+      </header>
+
+      <main class="content-grid">
+        <aside class="sidebar glass card-shadow p-3">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h2 class="h6 text-uppercase m-0 opacity-75">Your Notes</h2>
+            <span id="noteCount" class="badge rounded-pill text-bg-secondary">0</span>
+          </div>
+          <div id="notesList" class="notes-list" role="listbox" aria-label="Notes"></div>
+        </aside>
+
+        <section class="editor-panel glass card-shadow d-flex flex-column">
+          <div class="editor-toolbar p-3 border-bottom d-flex gap-2 flex-wrap align-items-center">
+            <input id="titleInput" class="form-control title-input" placeholder="Untitled note" maxlength="120" />
+            <input id="tagsInput" class="form-control tags-input" placeholder="tags (comma-separated)" maxlength="120" />
+            <button id="exportBtn" class="btn btn-soft" type="button">Export .md</button>
+            <button id="deleteBtn" class="btn btn-danger-soft" type="button">Delete</button>
+          </div>
+
+          <div class="split-view flex-grow-1">
+            <div class="pane editor-pane">
+              <label for="contentInput" class="form-label pane-label">Markdown</label>
+              <textarea id="contentInput" class="form-control" spellcheck="false" placeholder="# Start writing..."></textarea>
+            </div>
+            <div class="pane preview-pane">
+              <label class="form-label pane-label">Preview</label>
+              <article id="preview" class="preview markdown-body"></article>
+            </div>
+          </div>
+
+          <footer class="statusbar px-3 py-2 d-flex flex-wrap gap-3 align-items-center border-top">
+            <span id="autosaveStatus" class="status-pill status-idle">Idle</span>
+            <span id="wordCount" class="small text-body-secondary">0 words</span>
+            <span id="lastEdited" class="small text-body-secondary">Not edited yet</span>
+            <span id="versionInfo" class="small text-body-secondary ms-auto">Version history: 0</span>
+          </footer>
+        </section>
+      </main>
+    </div>
+
+    <script src="js/vendor/marked.min.js"></script>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
